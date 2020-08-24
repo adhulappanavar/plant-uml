@@ -1,0 +1,39 @@
+@startuml
+footer IRIS AZURE Architecture Plant-UML
+
+!define LIGHTORANGE
+!includeurl https://raw.githubusercontent.com/adhulappanavar/plant-UML/master/styles/style.puml
+
+
+' Azure
+!define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/release/2-1/dist
+
+
+left to right direction
+
+' Azure Components
+
+package "Geo" as geo1 {
+      AzureTrafficManager(atm, "Azure traffic Manager", "", "")
+
+      package "Region 1" as region1 {
+        package "Vnet Hub" as vnethub {
+
+        }
+
+        package "Vnet Spoke 1" as vnetspoke1 {
+
+        }
+
+        package "Vnet Spoke 2" as vnetspoke2 {
+
+        }
+
+         
+      }
+}
+
+atm --> vnethub
+vnethub --> vnetspoke1 : 1. network
+vnethub --> vnetspoke2 : 2. network
+@enduml
