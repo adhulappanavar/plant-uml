@@ -2,19 +2,35 @@
 footer IRIS AZURE Architecture Plant-UML
 
 !define LIGHTORANGE
-!includeurl https://raw.githubusercontent.com/adhulappanavar/plant-UML/master/styles/style.puml
+!includeurl https://raw.githubusercontent.com/adhulappanavar/plant-uml/master/styles/style.puml
 
 
 ' Azure
 !define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/release/2-1/dist
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/AzureSimplified.puml
 
+!includeurl AzurePuml/Compute/AzureAppService.puml
+!includeurl AzurePuml/Compute/AzureBatch.puml
+!includeurl AzurePuml/Containers/AzureContainerRegistry.puml
+!includeurl AzurePuml/Containers/AzureKubernetesService.puml
+!includeurl AzurePuml/Databases/AzureDatabaseForPostgreSQL.puml
+!includeurl AzurePuml/Databases/AzureCosmosDb.puml
+!includeurl AzurePuml/Databases/AzureSqlDatabase.puml
+!includeurl AzurePuml/Identity/AzureActiveDirectory.puml
+!includeurl AzurePuml/Networking/AzureLoadBalancer.puml
+!includeurl AzurePuml/Security/AzureKeyVault.puml
+!includeurl AzurePuml/Storage/AzureBlobStorage.puml
+!includeurl AzurePuml/Storage/AzureStorage.puml
+!includeurl AzurePuml/Management/AzureResourceGroups.puml
+!includeurl AzurePuml/Networking/AzureTrafficManager.puml
 
 left to right direction
 
 ' Azure Components
 
 package "Geo" as geo1 {
-      AzureTrafficManager(atm, "Azure traffic Manager", "", "")
+      AzureTrafficManager(atm, "Azure traffic Manager", "")
 
       package "Region 1" as region1 {
         package "Vnet Hub" as vnethub {
