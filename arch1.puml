@@ -23,7 +23,9 @@ footer IRIS AZURE Architecture Plant-UML
 !includeurl AzurePuml/Storage/AzureBlobStorage.puml
 !includeurl AzurePuml/Storage/AzureStorage.puml
 !includeurl AzurePuml/Management/AzureResourceGroups.puml
+!includeurl AzurePuml/Management/AzureLogAnalytics.puml
 !includeurl AzurePuml/Networking/AzureTrafficManager.puml
+
 
 left to right direction
 
@@ -31,18 +33,29 @@ left to right direction
 
 package "Geo" as geo1 {
       AzureTrafficManager(atm, "Azure traffic Manager", "")
+      component "<color:blue><$AzureTrafficManager{scale=0.5}></color>"
 
       package "Region 1" as region1 {
         package "Vnet Hub" as vnethub {
-
+          AzureContainerRegistry(acr_h1, "Azure Container Registry", "")
+          AzureKeyVault(akv_h1, "Azure Key valut", "")
+          AzureLogAnalytics(laws_h1, "Azure Log analytics Manager", "")
         }
 
         package "Vnet Spoke 1" as vnetspoke1 {
-
+          AzureLogAnalytics(laws_s1, "Azure Log analytics Manager", "")
+          AzureKeyVault(akv_s1, "Azure Key valut", "")
+          AzureKubernetesService(aks_s1, "Azure Kubernetes", "")
         }
 
         package "Vnet Spoke 2" as vnetspoke2 {
-
+          AzureLogAnalytics(laws_s2, "Azure Log analytics Manager", "")
+          AzureKeyVault(akv_s2, "Azure Key valut", "")
+          package "Kubernetes S2" as k8spoke1 {
+            AzureKubernetesService(aks_s2, "Azure Kubernetes", "")
+            package "Microservice1 S2" as ms1spoke1 {
+              
+          }
         }
 
          
