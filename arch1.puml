@@ -45,16 +45,20 @@ package "Geo" as geo1 {
         package "Vnet Spoke 1" as vnetspoke1 {
           AzureLogAnalytics(laws_s1, "Azure Log analytics Manager", "")
           AzureKeyVault(akv_s1, "Azure Key valut", "")
-          AzureKubernetesService(aks_s1, "Azure Kubernetes", "")
+          package "Kubernetes S1" as k8spoke1 {
+            AzureKubernetesService(aks_s2, "Azure Kubernetes", "")
+            package "Microservice1 S1" as ms1spoke1 {
+            }
+          }
         }
 
         package "Vnet Spoke 2" as vnetspoke2 {
           AzureLogAnalytics(laws_s2, "Azure Log analytics Manager", "")
           AzureKeyVault(akv_s2, "Azure Key valut", "")
-          package "Kubernetes S2" as k8spoke1 {
+          package "Kubernetes S2" as k8spoke2 {
             AzureKubernetesService(aks_s2, "Azure Kubernetes", "")
-            package "Microservice1 S2" as ms1spoke1 {
-              
+            package "Microservice1 S2" as ms1spoke2 {
+            }
           }
         }
 
@@ -62,7 +66,7 @@ package "Geo" as geo1 {
       }
 }
 
-atm --> vnethub
-vnethub --> vnetspoke1 : 1. network
-vnethub --> vnetspoke2 : 2. network
+atm <--> vnethub
+vnethub <--> vnetspoke1 : 1. network
+vnethub <--> vnetspoke2 : 2. network
 @enduml
